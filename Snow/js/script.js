@@ -11,6 +11,7 @@ setInterval(function(){
 
 	pahulja.appendTo('body').animate({
 	top: windowHeight,
+	left: '100px' //ovde radi i ide u levo. Kako da ovo varira?
 }, {
 	duration: 8000,
 
