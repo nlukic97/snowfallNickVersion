@@ -22,19 +22,19 @@ setInterval(function(){
 
 //dodaj animaciju da svaka leluja levo desno. Animiras njihov left sa random brojem izmedju -100 ili + 100px
 
-var windowWidth = window.innerWidth;
+/*var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
 
 setInterval(function(){
 	var pahulja =  $('.first').clone().removeAttr('class')
 
 	var randomNo = Math.floor(Math.random() * (windowWidth))
-	var leftRight2 = Math.floor(Math.random() * 200);
+	var leftRight2 = Math.floor(Math.random() * 100);
 	pahulja.css('left', randomNo).css('top', '-15px')
 
 	pahulja.appendTo('body').animate({
 		top: windowHeight/4, 
-		left: '+=' + leftRight2 //ide samo do kraja u jednom pravcu. Podeli animaciju na 4 dela //you could make this be the coursor position, when it reaches it dissapears
+		left: '+=' + leftRight2
 	},
 	{
 		duration: 2000,
@@ -74,7 +74,8 @@ setInterval(function(){
 			});
 		}
 	})
-},200)
+},200)*/
+
 
 
 
@@ -82,3 +83,61 @@ setInterval(function(){
 //origdjidji  http://jsfiddle.net/Xw29r/
 
 //ceo article https://stackoverflow.com/questions/10385950/how-to-get-a-div-to-randomly-move-around-a-page-using-jquery-or-css
+
+var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
+var windowHeightQ = window.innerHeight / 4;
+
+setInterval(function(){
+	var pahulja =  $('.first').clone().removeAttr('class')
+
+	var randomNo = Math.floor(Math.random() * (windowWidth))
+	var leftRight2 = Math.floor(Math.random() * 100);
+	pahulja.css('left', randomNo).css('top', '-15px')
+
+	//da ide dole do kraja za 8 sekundi
+	pahulja.appendTo('body').animate({
+		top: windowHeight, 
+	},{
+		duration: 8000,
+		easing: 'linear',
+		queue: false, //ovo valjda pravi da ostalo krece odmah, i oni se redjaju jedni za drugim. It doesnt cue anything after this
+		done: function(){
+			pahulja.remove()
+		}
+	})
+
+	//2 sekunde desno
+	.animate({
+		left: '+=' + leftRight2,
+	},{
+		duration:2000,
+		easing:'linear',
+	})
+	//2 sekunde levo
+	.animate({
+		left: '-=' + leftRight2,
+	},{
+		duration:2000,
+		easing:'linear',
+	})
+
+	//2 sekunde desno
+	.animate({
+		left: '+=' + leftRight2,
+	},{
+		duration:2000,
+		easing:'linear',
+	})
+
+	//2 sekunde levo
+	.animate({
+		left: '-=' + leftRight2,
+	},{
+		duration:2000,
+		easing:'linear',
+	})
+},200)
+
+
+
