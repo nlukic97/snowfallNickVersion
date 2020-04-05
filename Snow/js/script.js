@@ -29,28 +29,47 @@ setInterval(function(){
 	var pahulja =  $('.first').clone().removeAttr('class')
 
 	var randomNo = Math.floor(Math.random() * (windowWidth))
-	var leftRight = Math.floor(Math.random() * (windowWidth));
-	// console.log(leftRight)
-	var leftRight2 = Math.floor(Math.random() * (windowWidth));
-	pahulja.css('left', randomNo).css('top', '-10px')
+	var leftRight2 = Math.floor(Math.random() * 200);
+	pahulja.css('left', randomNo).css('top', '-15px')
 
 	pahulja.appendTo('body').animate({
-		top: windowHeight/2, 
-		left: leftRight //ide samo do kraja u jednom pravcu. Podeli animaciju na 4 dela
+		top: windowHeight/4, 
+		left: '+=' + leftRight2 //ide samo do kraja u jednom pravcu. Podeli animaciju na 4 dela //you could make this be the coursor position, when it reaches it dissapears
 	},
 	{
-		duration: 3000,
+		duration: 2000,
 		easing: "linear",
+		
 		done: function() {
 			
 			pahulja.animate({
-				top:windowHeight,
-				left: leftRight2
+				top:windowHeight / 2,
+				left: '-=' + leftRight2 	
 			},{
-				duration:3000,
+				duration:2000,
 				easing: "linear",
+
 				done: function() {
-					pahulja.remove()
+					pahulja.animate({
+						top: windowHeight/4 * 3,
+						left: '+=' + leftRight2
+					}, {
+						duration: 2000,
+						easing: "linear",
+
+						done: function(){
+							pahulja.animate({
+								top: windowHeight,
+								left: '-=' + leftRight2
+							}, {
+								duration: 2000,
+								easing: "linear",
+								done: function(){
+									pahulja.remove()
+								}
+							})
+						}
+					})
 				}
 			});
 		}

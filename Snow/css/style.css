@@ -9,7 +9,7 @@ img {
 	display: none;
 }
 
-.show {
-	background-color: red;
-	margin-top: 50px;
+body {
+	/*for the sake of the exercise, I would not usually do this*/
+	overflow: hidden; 
 }
